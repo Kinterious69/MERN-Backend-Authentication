@@ -40,7 +40,8 @@ const SignUp = () => {
           toast.error("login failed");
         }
       } catch (error) {
-        toast.error(error.message);
+       toast.error(error.response?.data?.message || error.message);
+        console.log(error.response?.data); // temporary, so you can see full detail in console
       }
       
       }
@@ -59,7 +60,8 @@ const SignUp = () => {
         
           
         } catch (error) {
-           toast.error(error.message)
+          toast.error(error.response?.data?.message || error.message);
+            console.log(error.response?.data); // temporary, so you can see full detail in console
         }
         
 
