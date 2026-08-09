@@ -11,7 +11,7 @@ import authRouter from './src/routes/authRoute.js'
 const app =express()
 const PORT=process.env.PORT || 4000
 app.use(express.json())
-const frontEndApi =["http://localhost:5173","https://mern-backend-authentication.vercel.app/"]
+const frontEndApi =["https://mern-backend-authentication.vercel.app/"]
 app.use(cors({credentials:true,origin:frontEndApi}))
 app.use(cookieParser())
 

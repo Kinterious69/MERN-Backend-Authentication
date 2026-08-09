@@ -45,7 +45,7 @@ const VerifyEmail = () => {
           }
          }
       } catch (error) {
-        const errorMessage = error.response?.data?.message || error.message || "Network error occurred.";
+        const errorMessage = error.response?.data?.message || error.message || "Network error occurred .";
     
            toast.error(errorMessage);
       }

@@ -54,7 +54,7 @@ const SignUp = () => {
             toast(data.message);
             navigate("/home");
            }else{
-                 toast.error("signUp failed")
+                 toast.error(data.message)
            }
         
           
