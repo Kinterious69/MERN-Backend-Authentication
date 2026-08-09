@@ -15,6 +15,7 @@ const SignUp = () => {
     const[name, setName]=useState("")
     const[email, setEmail]=useState("")
     const[password, setPassword]=useState("")
+    const [loading, setLoading] = useState(false)
      const navigate =useNavigate()
 
      const {BACKEND_URL,setIsLoggedIn} = useContext(AuthContent)
@@ -26,6 +27,7 @@ const SignUp = () => {
       if(email.length<2 ||password.length<2) return toast.error("enter all fields");
      
      if(state==="login"){ 
+          setLoading(true)
       try {
         const {data} =  await axios.post(BACKEND_URL+"/api/auth/login", {
           email,
@@ -43,10 +45,14 @@ const SignUp = () => {
        toast.error(error.response?.data?.message || error.message);
         console.log(error.response?.data); // temporary, so you can see full detail in console
       }
+      finally{
+          setLoading(false)
+        }
+        
       
       }
       else{
-       
+           setLoading(true)
        
         try {
            const {data} = await axios.post(BACKEND_URL+"/api/auth/signUp", {name,email,password})
@@ -62,6 +68,9 @@ const SignUp = () => {
         } catch (error) {
           toast.error(error.response?.data?.message || error.message);
             console.log(error.response?.data); // temporary, so you can see full detail in console
+        }
+        finally{
+          setLoading(false)
         }
         
 
