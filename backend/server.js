@@ -37,6 +37,9 @@ import { connectDB } from './src/config/db.js'
 
 
 const app = express()
+// Force pass all preflight checks right at entrypoint
+app.options('*', cors()); 
+
 const PORT = process.env.PORT || 4000
 
 // 1. FIXED: Removed the trailing slash "/" from the URL string

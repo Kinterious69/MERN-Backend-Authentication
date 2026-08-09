@@ -8,9 +8,10 @@ import jwt from 'jsonwebtoken'
        {expiresIn:"7d"}
     )
     res.cookie("token", token, {
-      httpOnly: true,
+      httpOnly: false,
        secure: false,        // only sent over HTTPS
-      sameSite: 'lax',    // required for cross-site requests
+      sameSite: 'none',    
+      maxAge: 7 * 24 * 60 * 60 * 1000 
     })
 
 }
