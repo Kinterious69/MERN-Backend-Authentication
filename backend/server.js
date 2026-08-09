@@ -27,11 +27,14 @@ app.get("/", (__, res)=>{
 })
 
 app.listen(PORT, ()=>console.log(`server running on port ${PORT} `))*/
-import express from "express"        // Make sure express is imported
+import express from "express"  
+import 'dotenv/config'      // Make sure express is imported
 import cors from "cors"
 import cookieParser from "cookie-parser" // Import cookie-parser
 import userRouter from './src/routes/userRoute.js'
 import authRouter from './src/routes/authRoute.js'
+import { connectDB } from './src/config/db.js'
+
 
 const app = express()
 const PORT = process.env.PORT || 4000
