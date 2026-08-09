@@ -38,12 +38,12 @@ import { connectDB } from './src/config/db.js'
 
 const app = express()
 // Force pass all preflight checks right at entrypoint
-
+app.options('*', cors()); 
 
 const PORT = process.env.PORT || 4000
 
 // 1. FIXED: Removed the trailing slash "/" from the URL string
-const frontEndApi = ["https://mern-backend-authentication-1xxkad4v2-sulayman-kintehs-projects.vercel.app"]
+const frontEndApi = ["https://mern-backend-authentication.vercel.app"]
 
 // 2. CORS Middleware (Must stay at the top)
 app.use(cors({
