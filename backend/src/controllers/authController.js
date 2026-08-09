@@ -18,10 +18,18 @@ export const signUp= async (req,res)=>{
             email,
             password:hashedPassword
         })
+           await user.save();
        
          const { password: userPassword, ...safeUser } = user._doc; 
 
-        tokenGenerator(user._id,res);
+          tokenGenerator(user._id,res);
+        res.status(201).json({
+            success:true,
+            message:"user succesfully created",
+            data:safeUser
+        })
+
+         
 
        await transporter.sendMail({
         from:process.env.SENDER,
@@ -29,18 +37,9 @@ export const signUp= async (req,res)=>{
         subject:"Account successfully created",
         text:"welcome to our MERN authentication app",
         html:welcomeSignUpTemplate(user)
-       })
-        await user.save();
+       }).catch((err)=>console.log(err.message))
+     
 
-
-
-        res.status(201).json({
-            success:true,
-            message:"user succesfully created",
-            data:safeUser
-        })
-        
-        
     } catch (error) {
         return res.status(500).json({
             success:false,
@@ -62,10 +61,10 @@ export const login= async (req,res)=>{
         if(!user ) return res.status(400).json({success:false, message:"user does not  exist"})
             const isMatched = await bcrypt.compare(password,user.password)
          if (!isMatched) return res.status(404).json({success:false, message:"wrong password"})
-         tokenGenerator(user._id,res);
-        
-       
-        res.status(200).json({
+
+           tokenGenerator(user._id,res);
+
+           res.status(200).json({
             success:true,
             message:"login successful",
            
@@ -103,11 +102,11 @@ const forgotPassword = async (req,res)=>{
     const {email}= req.body;
     try {
           const user = await userModel.findByIdAndUpdate({email}, red.body, {new:true});
-  if(!user) return res.status(404).json({success:false, message:"no user found with this email address"})
-    res.status(200).json({
-                   success:true,
-                   message:"password successfully reset"
-})
+          if(!user) return res.status(404).json({success:false, message:"no user found with this email address"})
+           res.status(200).json({
+           success:true,
+           message:"password successfully reset"
+           })
   
         
     } catch (error) {

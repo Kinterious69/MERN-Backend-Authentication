@@ -91,11 +91,11 @@ const SignUp = () => {
         <div  className='flex items-center justify-center rounded-full bg-slate-800 mb-6 p-2' >
 
               <div ><Mail/></div>
-            <input  className='px-4 w-full bg-transparent  rounded-md outline-none  ' value={email}   onChange={(e)=>setEmail(e.target.value)} type="email" id='email' placeholder='Enter Email'  />
+            <input  className='px-4 w-full bg-transparent text-base rounded-md outline-none  ' value={email}   onChange={(e)=>setEmail(e.target.value)} type="email" id='email' placeholder='Enter Email'  />
         </div>
         <div  className='flex items-center justify-center  rounded-full bg-slate-800 mb-6 p-2' >
                <div ><Lock/></div>
-            <input className='px-4 w-full bg-transparent  rounded-md outline-none  ' value={password} onChange={(e)=>setPassword(e.target.value)} type="password" id='password' placeholder='Enter password' />
+            <input className='px-4 w-full bg-transparent text-base  rounded-md outline-none  ' value={password} onChange={(e)=>setPassword(e.target.value)} type="password" id='password' placeholder='Enter password' />
         </div>
         <div className='mb-2 '>
         <button  className='px-6 py-2 bg-gradient-to-r from-indigo-500 to-indigo-900 text-white rounded-full w-full'>{state}</button>
@@ -121,15 +121,15 @@ const SignUp = () => {
      <form onSubmit={handleSubmit}>
         <div className='flex rounded-full bg-slate-800 mb-6 p-2'>
                 <div><User/></div>
-            <input  className='px-4 w-full bg-transparent   rounded-md outline-none  ' type="text" id='name' placeholder='Enter name' value={name}  onChange={e=>setName(e.target.value)} />
+            <input  className='px-4 w-full bg-transparent text-base  rounded-md outline-none  ' type="text" id='name' placeholder='Enter name' value={name}  onChange={e=>setName(e.target.value)} />
         </div>
         <div className='flex rounded-full bg-slate-800 mb-6 p-2'>
                 <div><Mail/></div>
-            <input  className='px-4 w-full bg-transparent   rounded-md outline-none '  type="email" id='email' placeholder='Enter email' value={email}  onChange={e=>setEmail(e.target.value)} />
+            <input  className='px-4 w-full bg-transparent text-base  rounded-md outline-none '  type="email" id='email' placeholder='Enter email' value={email}  onChange={e=>setEmail(e.target.value)} />
         </div>
         <div className='flex rounded-full bg-slate-800 mb-6 p-2' >
                 <div><Lock/></div>
-            <input  className='px-4 w-full bg-transparent   rounded-md outline-none '  type="password" id='password' placeholder='Enter password' value={password}  onChange={e=>setPassword(e.target.value)} />
+            <input  className='px-4 w-full bg-transparent text-base  rounded-md outline-none '  type="password" id='password' placeholder='Enter password' value={password}  onChange={e=>setPassword(e.target.value)} />
         </div >
         <div className='mb-2'>
         <button className='px-6 py-2 bg-gradient-to-r from-indigo-500 to-indigo-900 text-white rounded-full w-full'>{state}</button>

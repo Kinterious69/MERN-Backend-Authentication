@@ -40,15 +40,6 @@ export const isAuthenticated =  (__, res)=>{
     
    }
 
-
-
-
-
-
-
-
-
-
 }
 
 export const sendVerificationOTp = async (req,res)=>{
@@ -74,20 +65,17 @@ export const sendVerificationOTp = async (req,res)=>{
        user.verificationOtpExpiresAt=Date.now() + 10 * 60 *1000
        await user.save();
 
-        transporter.sendMail({
-        from:process.env.SENDER,
-        to:user.email,
-        subject:" Verification OTP Code",
-        html:verificationOtpTemplate(verificationOtp,user)
-    })
-        
-      
-
-
         res.status(200).json({
             success:true,
             message:`verification code successfully sent`
         })
+
+       transporter.sendMail({
+        from:process.env.SENDER,
+        to:user.email,
+        subject:" Verification OTP Code",
+        html:verificationOtpTemplate(verificationOtp,user)
+    }).catch((err)=>console.log(err.message))
           
         
     } catch (error) {
@@ -104,12 +92,9 @@ export const verifyEmail = async (req,res)=>{
     const{userId}=req.user;
     const{otp}=req.body
   
-
-
     try {
        const user =await userModel.findById(userId);
        
-
          if(user.isVerified ) {return res.status(400).json({
             success:false,
              message:"account is already verified"
@@ -119,28 +104,26 @@ export const verifyEmail = async (req,res)=>{
              message:"wrong verification token"
          })}
           if(user.verificationOtpExpiresAt<Date.now()) return res.status(401).json({success:false, message:"verification otp code has expired"})
-       
-        
+    
          user.verificationOtp=""
          user.verificationOtpExpiresAt=0
          user.isVerified=true;
     
         await user.save();
 
-        await transporter.sendMail({
-        from:process.env.SENDER,
-        to:user.email,
-        subject:"Email Verification",
-        text:welcomeEmailText(user),
-        html:welcomeEmailHtml(user)
-       })
-        
       res.status(200).json({
         success:true,
         message:`email successfully verified`
 
       })
 
+      await transporter.sendMail({
+        from:process.env.SENDER,
+        to:user.email,
+        subject:"Email Verification",
+        text:welcomeEmailText(user),
+        html:welcomeEmailHtml(user)
+       }).catch((err)=>console.log(err.message))
 
          
         
@@ -169,23 +152,21 @@ export const sendResetPasswordOtp = async (req,res)=>{
           user.resetOtpExpiresAt=Date.now() +  10 * 60 * 1000
           await user.save()
 
-           await transporter.sendMail({
-            from:process.env.SENDER,
-            to:email,
-            subject:"password reset otp",
-            text: resetOtptextTemplate(resetOtp),
-            html: resetOtpTemplate(resetOtp)
-});
-        
+         
           
         res.status(200).json({
         success:true,
         message:`reset otp successfully sent`
 
       })
-
-    
-            
+        await transporter.sendMail({
+            from:process.env.SENDER,
+            to:email,
+            subject:"password reset otp",
+            text: resetOtptextTemplate(resetOtp),
+            html: resetOtpTemplate(resetOtp)
+            }).catch((err)=>console.log(err.message));
+              
         } catch (error) {
             res.status(500).json({
                success:false,
@@ -214,22 +195,21 @@ export const resetPassword = async (req,res)=>{
 
          await user.save();
 
-          await transporter.sendMail({
-            from:process.env.SENDER,
-            to:email,
-            subject:"password successfully reset",
-            text:`your password had been successfully reset`
-          })
-       
-
          res.status(200).json({
             success:true,
             message:"password has been successfully reset",
             data:user
          })
 
+          await transporter.sendMail({
+            from:process.env.SENDER,
+            to:email,
+            subject:"password successfully reset",
+            text:`your password had been successfully reset`
+          }).catch((err)=>console.log(err.message))
+       
 
-    } catch (error) {
+        } catch (error) {
          res.status(500).json({
             success:false,
             message:error.message
