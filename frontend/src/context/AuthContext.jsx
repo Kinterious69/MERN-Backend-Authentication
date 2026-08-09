@@ -6,21 +6,19 @@ export const AuthContent=createContext()
 const AuthContext = (props) => {
 
    const [isLoggedIn , setIsLoggedIn]=useState(false)
-   const [userData, setUserData]=useState(false)
+   const [userData, setUserData]=useState(null)
     const  BACKEND_URL= import.meta.env.VITE_BACKEND_URL
     axios.defaults.withCredentials=true
      
-        const getIsAuthenticated= async ()=>{
-            try {
-                  await axios.get(BACKEND_URL + "/api/auth/isAuth")
-                  setIsLoggedIn(true)
-                  getUserData();
-                  
-
-            } catch (error) {
-                console.log(error.message)
-            }
-        }
+     const getIsAuthenticated = async () => {
+    try {
+        await axios.get(BACKEND_URL + "/api/auth/isAuth")
+        setIsLoggedIn(true)
+        getUserData();
+    } catch (error) {
+        console.log("isAuth failed:", error.response?.status, error.response?.data)
+    }
+}
 
         const getUserData= async () =>{
           try {

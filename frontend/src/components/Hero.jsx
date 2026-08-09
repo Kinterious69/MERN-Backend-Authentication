@@ -29,10 +29,16 @@ const Hero = () => {
         <h1 className='text-center text-lg pt-2 text-white'><strong>Profile</strong></h1>
         
         <div className='p-3 flex flex-col gap-2 text-white'>
-              <h1 ><strong>Name:</strong>&nbsp;&nbsp;{userData.name}</h1>
-              <h1><strong>Email:</strong>&nbsp;&nbsp;&nbsp;{userData.email}</h1>
-              <h1><strong>Status:</strong>&nbsp;&nbsp;{userData.verified ? " verified " : "not verified "}</h1>
-
+          
+           {userData ? (
+               <> <h1 ><strong>Name:</strong>&nbsp;&nbsp;{userData.name}</h1>
+                <h1><strong>Email:</strong>&nbsp;&nbsp;&nbsp;{userData.email}</h1>
+                <h1><strong>Status:</strong>&nbsp;&nbsp;{userData.verified ? " verified " : "not verified "}</h1>
+                  </>
+                      ) 
+                      : (
+                            <p>Loading...</p>
+                    )}       
             
         </div>
          
