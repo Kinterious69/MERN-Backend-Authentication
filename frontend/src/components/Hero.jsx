@@ -33,7 +33,7 @@ const Hero = () => {
            {userData ? (
                <> <h1 ><strong>Name:</strong>&nbsp;&nbsp;{userData.name}</h1>
                 <h1><strong>Email:</strong>&nbsp;&nbsp;&nbsp;{userData.email}</h1>
-                <h1><strong>Status:</strong>&nbsp;&nbsp;{userData.verified ? " verified " : "not verified "}</h1>
+                <h1><strong>Status:</strong>&nbsp;&nbsp;{userData.verified ? " verified " : " unVerified "}</h1>
                   </>
                       ) 
                       : (
