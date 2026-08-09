@@ -1,0 +1,55 @@
+# Dependencies (Matches root and nested directories)
+node_modules/
+jspm_packages/
+web_modules/
+venv/
+.venv/
+
+# Environment secrets and private keys
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.pem
+*.key
+
+# Build outputs and compilation artifacts
+dist/
+build/
+out/
+.next/
+.nuxt/
+target/
+bin/
+obj/
+*.tsbuildinfo
+
+# Logs and runtime caches
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.eslintcache
+.parcel-cache
+.cache/
+__pycache__/
+*.pyc
+
+# Test and Code Coverage
+coverage/
+.nyc_output/
+
+# IDE and Editor configurations
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# Operating System files
+.DS_Store
+Thumbs.db
