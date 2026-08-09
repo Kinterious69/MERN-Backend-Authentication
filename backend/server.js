@@ -55,4 +55,11 @@ app.use(cookieParser())
 app.use('/api/user', userRouter) // Assuming this is your user route
 app.use('/api/auth', authRouter)
 
+
+connectDB()
+
+app.get("/", (__, res)=>{
+    res.send("hi sulayman")
+})
+
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
