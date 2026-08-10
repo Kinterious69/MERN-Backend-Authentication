@@ -4,6 +4,7 @@ import { userModel } from "../model/userModel.js";
 import { transporter } from "../config/nodemailer.js";
 import bcrypt from "bcrypt"
 import { resetOtpTemplate, resetOtptextTemplate, verificationOtpTemplate, welcomeEmailHtml, welcomeEmailText } from "../config/emailTemplate.js";
+import { emailVerifiedMessage, resetPasswordMessage, sendResetOtpMessage, sendVerificationCodeMessage } from "../config/brevoEmail.js";
 
 export const  verifyToken = (req,res,next)=>{
    const {token} = req.cookies
@@ -69,13 +70,15 @@ export const sendVerificationOTp = async (req,res)=>{
             success:true,
             message:`verification code successfully sent`
         })
-
+     /*
        transporter.sendMail({
         from:process.env.SENDER,
         to:user.email,
         subject:" Verification OTP Code",
         html:verificationOtpTemplate(verificationOtp,user)
-    }).catch((err)=>console.log(err.message))
+    }).catch((err)=>console.log(err.message))*/
+
+    await sendVerificationCodeMessage(user.email,user,verificationOtp)
           
         
     } catch (error) {
@@ -116,7 +119,7 @@ export const verifyEmail = async (req,res)=>{
         message:`email successfully verified`
 
       })
-
+    /*
       await transporter.sendMail({
         from:process.env.SENDER,
         to:user.email,
@@ -125,7 +128,8 @@ export const verifyEmail = async (req,res)=>{
         html:welcomeEmailHtml(user)
        }).catch((err)=>console.log(err.message))
 
-         
+         */
+        await emailVerifiedMessage(user.email, user)
         
     } catch (error) {
         res.status(400).json({
@@ -159,13 +163,16 @@ export const sendResetPasswordOtp = async (req,res)=>{
         message:`reset otp successfully sent`
 
       })
+      /*
         await transporter.sendMail({
             from:process.env.SENDER,
             to:email,
             subject:"password reset otp",
             text: resetOtptextTemplate(resetOtp),
             html: resetOtpTemplate(resetOtp)
-            }).catch((err)=>console.log(err.message));
+            }).catch((err)=>console.log(err.message));*/
+
+            sendResetOtpMessage(user.email,resetOtp)
               
         } catch (error) {
             res.status(500).json({
@@ -200,13 +207,14 @@ export const resetPassword = async (req,res)=>{
             message:"password has been successfully reset",
             data:user
          })
-
+   /*
           await transporter.sendMail({
             from:process.env.SENDER,
             to:email,
             subject:"password successfully reset",
             text:`your password had been successfully reset`
-          }).catch((err)=>console.log(err.message))
+          }).catch((err)=>console.log(err.message))*/
+          await resetPasswordMessage(user.email)
        
 
         } catch (error) {

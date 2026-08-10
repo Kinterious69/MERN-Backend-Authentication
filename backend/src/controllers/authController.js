@@ -1,3 +1,4 @@
+import { welcomeEmailMessage } from "../config/brevoEmail.js";
 import { welcomeSignUpTemplate } from "../config/emailTemplate.js";
 import { tokenGenerator } from "../config/generateToken.js";
 import { transporter } from "../config/nodemailer.js";
@@ -30,14 +31,16 @@ export const signUp= async (req,res)=>{
         })
 
          
-
+     /*
        await transporter.sendMail({
         from:process.env.SENDER,
         to:email,
         subject:"Account successfully created",
         text:"welcome to our MERN authentication app",
         html:welcomeSignUpTemplate(user)
-       }).catch((err)=>console.log(err.message))
+       }).catch((err)=>console.log(err.message))*/
+
+       await welcomeEmailMessage(email, user)
      
 
     } catch (error) {
