@@ -12,7 +12,7 @@ const Navbar = () => {
   
    const navigate =useNavigate()
   
-    const {BACKEND_URL,setIsLoggedIn,setUserData,userData} = useContext(AuthContent)
+    const {BACKEND_URL,setIsLoggedIn,setUserData,userData, getUserData} = useContext(AuthContent)
  
    {/*  const handleLogout= async () =>{
      
@@ -32,6 +32,13 @@ const Navbar = () => {
        
        }
    */}
+    
+        useEffect(()=>{
+         
+               getUserData();
+          
+        },[])
+      
    
    axios.defaults.withCredentials=true
   

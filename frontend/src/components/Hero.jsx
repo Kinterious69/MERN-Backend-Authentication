@@ -1,11 +1,17 @@
 import React, { useContext, useState } from 'react'
 import images from '../assets'
 import { AuthContent } from '../context/AuthContext'
+import { useEffect } from 'react'
 
 
 const Hero = () => {
    
-  const {userData}= useContext(AuthContent)
+  const {userData,getUserData}= useContext(AuthContent)
+
+  useEffect(()=>{
+        getUserData();
+
+  },[])
 
   return (
     
