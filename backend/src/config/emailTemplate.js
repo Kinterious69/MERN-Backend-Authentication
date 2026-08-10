@@ -35,7 +35,7 @@ Thank you for joining my App!
 `;
 }
 
-export const verificationOtpTemplate = (code,user)=>{
+export const verificationOtpTemplate = (user,verificationCode)=>{
   return `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto;">
           <h2 style="color: #2563eb;">Verify Your Email</h2>
@@ -51,7 +51,7 @@ export const verificationOtpTemplate = (code,user)=>{
             border-radius:8px;
             text-align:center;
             letter-spacing:5px;">
-            ${code}
+            ${verificationCode}
         </h1>
   
         <p>This code expires in <strong>10 minutes</strong>.</p>

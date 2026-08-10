@@ -172,7 +172,7 @@ export const sendResetPasswordOtp = async (req,res)=>{
             html: resetOtpTemplate(resetOtp)
             }).catch((err)=>console.log(err.message));*/
 
-            sendResetOtpMessage(user.email,resetOtp)
+            sendResetOtpMessage(email,resetOtp)
               
         } catch (error) {
             res.status(500).json({
