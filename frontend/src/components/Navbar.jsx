@@ -14,6 +14,7 @@ const Navbar = () => {
    const navigate =useNavigate()
   
     const {setIsLoggedIn,setUserData,userData, getUserData} = useContext(AuthContent)
+    const[loading, setLoading]=useState(false)
  
    
    
@@ -24,16 +25,14 @@ const Navbar = () => {
 [])
   
    const handleClick= async () =>{
-      try {
+      try { 
+             setLoading(true)
             const {data} = await axios.post("/api/auth/logout")
             if(data.success){
                navigate("/")
                toast(data.message);
                setIsLoggedIn(false);
-               setUserData(false);
-              
-               
-               
+               setUserData(false); 
             }
             else{
              toast.error("Loging out failed")
@@ -41,10 +40,13 @@ const Navbar = () => {
           
       } catch (error) {
          toast.error(error)
+      }finally{
+         setLoading(false)
       }
    }
    const handleVerifyOtp = async ()=>{
       try {
+         setLoading(true)
          const {data}= await axios.post( "/api/auth/sendVerifyOtp");
          if(data.success){
             navigate("/verifyEmail")
@@ -55,6 +57,9 @@ const Navbar = () => {
       } catch (error) {
          toast.error(error.message)
          
+      }
+      finally{
+         setLoading(false)
       }
    }
    
