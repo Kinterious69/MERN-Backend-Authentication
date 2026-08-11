@@ -64,9 +64,9 @@ const Navbar = () => {
    }
    
   return (
-    <div className='flex justify-between shadow-lg p-1 top-0 absolute w-full text-white  '>
+    <div className='flex justify-between items-center shadow-lg p-1 top-0 absolute w-full text-white  '>
         
-       <h1 className='mt-1 text-white text-xs font-bold '>MERN-AUTHENTICATION</h1>
+       <h1 className=' text-white text-xs font-bold '>MERN-AUTHENTICATION</h1>
        {
         
        <div className='group '>
