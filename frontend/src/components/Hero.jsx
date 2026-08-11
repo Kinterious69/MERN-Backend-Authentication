@@ -18,13 +18,13 @@ const Hero = () => {
     
       <div className=' min-h-screen p-2  flex gap-4 flex-col px-6 items-center overflow-hidden'>
       
-        <div className='mt-4  '>
+        <div>
          
-         <div className='  p-16 sm:w-96 '  >
+         <div className='  mt-12 p-12 w-72 '  >
         <img className='   rounded-full p-1 bg-slate-900  '  src={images} alt="" />
          </div>
          <div> 
-        <p className='text-center text-lg  text-white  mt-2 font-bold '>welcome back, {userData && userData.name.split(" ")[0]} <br></br> </p>
+        <p className='text-center text-lg  text-white   font-bold '>welcome back, {userData && userData.name.split(" ")[0]} <br></br> </p>
         </div>
         </div>
 
