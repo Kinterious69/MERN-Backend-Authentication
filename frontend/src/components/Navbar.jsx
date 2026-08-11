@@ -80,7 +80,7 @@ const Navbar = () => {
                         </>
                      ):
                      (
-                        <button onClick={()=>navigate("/")} className='   text-xs relative shadow-lg font-bold bg-transparent px-3 py-2 rounded-full tracking-wider' >A</button>
+                        <button onClick={()=>navigate("/")} className='   text-md relative shadow-lg font-bold bg-transparent px-3 py-2 rounded-full tracking-wider' >A</button>
                      )
                   }    
 
