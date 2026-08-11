@@ -30,16 +30,6 @@ export const signUp= async (req,res)=>{
             data:safeUser
         })
 
-         
-     /*
-       await transporter.sendMail({
-        from:process.env.SENDER,
-        to:email,
-        subject:"Account successfully created",
-        text:"welcome to our MERN authentication app",
-        html:welcomeSignUpTemplate(user)
-       }).catch((err)=>console.log(err.message))*/
-
        await welcomeEmailMessage(email, user)
      
 

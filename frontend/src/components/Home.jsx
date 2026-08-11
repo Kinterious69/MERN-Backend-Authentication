@@ -4,7 +4,7 @@ import Hero from './Hero'
 
 const Home = () => {
   return (
-    <div className='flex flex-col min-h-screen relative bg-gradient-to-b from-gray-50 from-70% to-orange-200'>
+    <div className='flex flex-col min-h-screen relative bg-gradient-to-b from-slate-500  to-orange-200'>
         <Navbar/>
         <Hero/>
       

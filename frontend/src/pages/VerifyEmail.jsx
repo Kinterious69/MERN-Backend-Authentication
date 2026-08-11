@@ -21,7 +21,7 @@ const VerifyEmail = () => {
 
     const handleBackspace= (e,index)=>{
 
-       if(e.key==="Backspace" && e.target.value===""&& index>0){
+       if(e.key==="Backspace" && e.target.value==="" && index>0){
 
         inputRef.current[index-1].focus()
        }

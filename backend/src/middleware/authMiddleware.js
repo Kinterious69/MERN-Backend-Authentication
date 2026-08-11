@@ -1,9 +1,7 @@
 import jwt from "jsonwebtoken"
 import { generateOtp } from "../config/generateOtp.js";
 import { userModel } from "../model/userModel.js";
-import { transporter } from "../config/nodemailer.js";
 import bcrypt from "bcrypt"
-import { resetOtpTemplate, resetOtptextTemplate, verificationOtpTemplate, welcomeEmailHtml, welcomeEmailText } from "../config/emailTemplate.js";
 import { emailVerifiedMessage, resetPasswordMessage, sendResetOtpMessage, sendVerificationCodeMessage } from "../config/brevoEmail.js";
 
 export const  verifyToken = (req,res,next)=>{
@@ -70,13 +68,7 @@ export const sendVerificationOTp = async (req,res)=>{
             success:true,
             message:`verification code successfully sent`
         })
-     /*
-       transporter.sendMail({
-        from:process.env.SENDER,
-        to:user.email,
-        subject:" Verification OTP Code",
-        html:verificationOtpTemplate(verificationOtp,user)
-    }).catch((err)=>console.log(err.message))*/
+    
 
     await sendVerificationCodeMessage(user.email,user,verificationOtp)
           
@@ -119,16 +111,7 @@ export const verifyEmail = async (req,res)=>{
         message:`email successfully verified`
 
       })
-    /*
-      await transporter.sendMail({
-        from:process.env.SENDER,
-        to:user.email,
-        subject:"Email Verification",
-        text:welcomeEmailText(user),
-        html:welcomeEmailHtml(user)
-       }).catch((err)=>console.log(err.message))
-
-         */
+    
         await emailVerifiedMessage(user.email, user)
         
     } catch (error) {
@@ -163,15 +146,7 @@ export const sendResetPasswordOtp = async (req,res)=>{
         message:`reset otp successfully sent`
 
       })
-      /*
-        await transporter.sendMail({
-            from:process.env.SENDER,
-            to:email,
-            subject:"password reset otp",
-            text: resetOtptextTemplate(resetOtp),
-            html: resetOtpTemplate(resetOtp)
-            }).catch((err)=>console.log(err.message));*/
-
+ 
             sendResetOtpMessage(email,resetOtp)
               
         } catch (error) {
@@ -191,14 +166,16 @@ export const resetPassword = async (req,res)=>{
    
     try {
          const user = await userModel.findOne({email});
-         if(user.resetOtp!==otp || user.resetOtp==="" ) return res.status(404).json({message:"wrong verification code"});
+         
+         if(user.resetOtp!==otp || user.resetOtp==="" ) return res.status(404).json({message:"wrong resetOtp code"});
          if(user.resetOtpExpiresAt<Date.now()) return res.status(401).json({success:false, message:"reset otp code has expired"})
+          
 
          const hashedPassword = await bcrypt.hash(newPassword,10)
 
          user.password=hashedPassword;
          user.resetOtp=""
-         resetOtpExpiresAt=0
+         user.resetOtpExpiresAt=0
 
          await user.save();
 
@@ -207,13 +184,7 @@ export const resetPassword = async (req,res)=>{
             message:"password has been successfully reset",
             data:user
          })
-   /*
-          await transporter.sendMail({
-            from:process.env.SENDER,
-            to:email,
-            subject:"password successfully reset",
-            text:`your password had been successfully reset`
-          }).catch((err)=>console.log(err.message))*/
+   
           await resetPasswordMessage(user.email)
        
 

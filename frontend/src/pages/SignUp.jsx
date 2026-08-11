@@ -15,6 +15,7 @@ const SignUp = () => {
     const[name, setName]=useState("")
     const[email, setEmail]=useState("")
     const[password, setPassword]=useState("")
+    const[repeatPassword,setRepeatPassword]=useState("")
     const [loading, setLoading] = useState(false)
      const navigate =useNavigate()
 
@@ -54,7 +55,8 @@ const SignUp = () => {
       else{
            setLoading(true)
        
-        try {
+          try {
+            if(password !== repeatPassword) return toast.error("password not matched")
            const {data} = await axios.post(BACKEND_URL+"/api/auth/signUp", {name,email,password})
            if(data.success){
             setIsLoggedIn(true);
@@ -130,6 +132,10 @@ const SignUp = () => {
         <div className='flex rounded-full bg-slate-800 mb-6 p-2' >
                 <div><Lock/></div>
             <input  className='px-4 w-full bg-transparent text-base  rounded-md outline-none '  type="password" id='password' placeholder='Enter password' value={password}  onChange={e=>setPassword(e.target.value)} />
+        </div >
+        <div className='flex rounded-full bg-slate-800 mb-6 p-2' >
+                <div><Lock/></div>
+            <input  className='px-4 w-full bg-transparent text-base  rounded-md outline-none '  type="password" id='password' placeholder='Repeat password' value={repeatPassword}  onChange={e=>setRepeatPassword(e.target.value)} />
         </div >
         <div className='mb-2'>
         <button className='px-6 py-2 bg-gradient-to-r from-indigo-500 to-indigo-900 text-white rounded-full w-full'>{state}</button>

@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import {toast} from "react-toastify"
 import axios from "axios"
 import { AuthContent } from '../context/AuthContext.jsx'
+import { useEffect } from 'react'
 
 
 
@@ -14,33 +15,13 @@ const Navbar = () => {
   
     const {BACKEND_URL,setIsLoggedIn,setUserData,userData, getUserData} = useContext(AuthContent)
  
-   {/*  const handleLogout= async () =>{
-     
-     
-       const URL = "http://localhost:5000/api/logout"
-      
-       try {
-          await axios.post(URL,{ withCredentials: true })
-           localStorage.removeItem("token");
-           localStorage.clear();
-          toast("logout successful")
-          navigate("/")
-       } catch (error) {
-         console.log(error)
-         toast.error("logout failed")
-       }
-       
-       }
-   */}
-    
-        useEffect(()=>{
-         
-               getUserData();
-          
-        },[])
-      
+   
    
    axios.defaults.withCredentials=true
+   useEffect(()=>{
+      getUserData()
+   },
+[])
   
    const handleClick= async () =>{
       try {
@@ -79,15 +60,23 @@ const Navbar = () => {
   return (
     <div className='flex justify-between shadow-lg p-3 top-0 absolute w-full text-white  '>
         
-       <h1 className='mt-1 text-black  font-bold '>MERN-AUTHENTICATION</h1>
+       <h1 className='mt-1 text-white text-xs font-bold '>MERN-AUTHENTICATION</h1>
        {
         
-       userData &&  <div className='group '>
-                      <button  className=' p-2 px-4  text-sm relative shadow-lg font-bold bg-slate-700 rounded-full ' >{userData.name[0].toUpperCase()}</button>
-                      <ul className='group-hover:block hidden bg-slate-900 cursor-pointer absolute right-0 mr-1 p-1 text-sm'>
-                        {!userData.verified && <li onClick={handleVerifyOtp} className='hover:bg-white hover:text-black'>verifyEmail</li> }
-                        <li onClick={handleClick} className='hover:bg-white hover:text-black'>Logout</li>
+       <div className='group '>
+                  {
+                     userData ?(
+                      <><button  className=' py-1.5 px-5  text-xs relative shadow-lg font-bold bg-transparent rounded-full ' >{userData&& userData.name[0].toUpperCase()}</button>
+                      <ul className='group-hover:block   hidden bg-transparent cursor-pointer absolute right-0 mr-3 p-1 text-sm'>
+                       <li onClick={handleVerifyOtp} className='hover:bg-white text-xs hover:text-black mb-1'>verifyEmail</li> 
+                        <li onClick={handleClick} className='hover:bg-white text-xs hover:text-black'>Logout</li>
                       </ul>
+                        </>
+                     ):
+                     (
+                        <button onClick={()=>navigate("/")} className=' py-1.5 px-5  text-xs relative shadow-lg font-bold bg-transparent rounded-full tracking-wider' >login</button>
+                     )
+                  }    
 
                       </div>
           

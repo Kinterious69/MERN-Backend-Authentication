@@ -27,12 +27,12 @@ const AuthContext = (props) => {
               setUserData(data.userData) 
             }
             else{
-              toast.error(" cannot get userData ")
+             console.log("getUser failed:", error.response?.status, error.response?.data)
             }
 
             
           } catch (error) {
-            toast.error(error.message)
+          
           }
         }
         
@@ -42,7 +42,8 @@ const AuthContext = (props) => {
       setIsLoggedIn,
       userData,
       setUserData,
-      getUserData
+      getUserData,
+      
     }
     
     useEffect(()=>{
