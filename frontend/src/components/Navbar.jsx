@@ -72,7 +72,7 @@ const Navbar = () => {
        <div className='group '>
                   {
                      userData ?(
-                      <><button  className=' py-2 px-3  text-xs relative shadow-lg font-bold bg-transparent rounded-full ' >{userData&& userData.name[0].toUpperCase()}</button>
+                      <><button  className=' py-2 px-3  text-md relative shadow-lg font-bold bg-transparent rounded-full ' >{userData&& userData.name[0].toUpperCase()}</button>
                       <ul className='group-hover:block   hidden bg-transparent cursor-pointer absolute right-0 mr-3 p-1 text-sm'>
                        <li onClick={handleVerifyOtp} className='hover:bg-white text-xs hover:text-black mb-1'>verifyEmail</li> 
                         <li onClick={handleClick} className='hover:bg-white text-xs hover:text-black'>Logout</li>
