@@ -27,11 +27,11 @@ const Navbar = () => {
       try {
             const {data} = await axios.post("/api/auth/logout")
             if(data.success){
-               
+               navigate("/")
                toast(data.message);
                setIsLoggedIn(false);
                setUserData(false);
-                navigate("/")
+              
                
                
             }
@@ -45,10 +45,11 @@ const Navbar = () => {
    }
    const handleVerifyOtp = async ()=>{
       try {
-         const {data}= await axios.post(BACKEND_URL + "/api/auth/sendVerifyOtp");
+         const {data}= await axios.post( "/api/auth/sendVerifyOtp");
          if(data.success){
-            toast(data.message),
             navigate("/verifyEmail")
+            toast(data.message)
+            
          }
          
       } catch (error) {
