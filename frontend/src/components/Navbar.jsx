@@ -11,7 +11,7 @@ import { useEffect } from 'react'
 
 const Navbar = () => {
   
-   const navigate =useNavigate()
+    const navigate =useNavigate()
   
     const {setIsLoggedIn,setUserData,userData, getUserData} = useContext(AuthContent)
     const[loading, setLoading]=useState(false)
@@ -22,40 +22,43 @@ const Navbar = () => {
    useEffect(()=>{
       getUserData()
    },
-[])
+       [])
   
-   const handleClick= async () =>{
-      try { 
+   const handleClick= async (e) =>{
+      try {  
+              e.preventDefault()
              setLoading(true)
             const {data} = await axios.post("/api/auth/logout")
             if(data.success){
-               navigate("/")
-               toast(data.message);
+              
                setIsLoggedIn(false);
                setUserData(false); 
+               toast(data.message);
+               navigate("/")
             }
             else{
-             toast.error("Loging out failed")
+             toast.error(error.message)
             }
           
       } catch (error) {
-         toast.error(error)
+         toast.error(error.message)
       }finally{
          setLoading(false)
       }
    }
-   const handleVerifyOtp = async ()=>{
+   const handleVerifyOtp = async (e)=>{
       try {
+         e.preventDefault()
          setLoading(true)
          const {data}= await axios.post( "/api/auth/sendVerifyOtp");
          if(data.success){
-            navigate("/verifyEmail")
             toast(data.message)
+            navigate("/verifyEmail")
             
          }
          
       } catch (error) {
-         toast.error(error.message)
+        toast.error(error.response?.data?.message || error.message);
          
       }
       finally{
@@ -72,7 +75,7 @@ const Navbar = () => {
        <div className='group '>
                   {
                      userData ?(
-                      <><button  className=' py-1 px-2.5  text-md relative shadow-lg font-bold bg-slate-900 rounded-full ' >{userData&& userData.name[0].toUpperCase()}</button>
+                      <><button  className=' py-0.5 px-2.5  text-md relative shadow-lg font-bold bg-slate-900 rounded-full ' >{userData && userData.name[0].toUpperCase()}</button>
                       <ul className='group-hover:block   hidden bg-transparent cursor-pointer absolute right-0 mr-3 p-1 text-sm'>
                        <li onClick={handleVerifyOtp} className='hover:bg-white text-xs hover:text-black mb-1'>verifyEmail</li> 
                         <li onClick={handleClick} className='hover:bg-white text-xs hover:text-black'>Logout</li>
@@ -80,7 +83,7 @@ const Navbar = () => {
                         </>
                      ):
                      (
-                        <button onClick={()=>navigate("/")} className=' text-center  text-md relative shadow-lg font-bold bg-slate-900 px-2.5 py-1 rounded-full tracking-wider' >A</button>
+                        <button onClick={()=>navigate("/")} className=' text-center  text-md relative shadow-lg font-bold bg-slate-900 px-2.5 py-0.5 rounded-full tracking-wider' >login</button>
                      )
                   }    
 

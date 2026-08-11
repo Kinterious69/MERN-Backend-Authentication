@@ -39,8 +39,8 @@ const ResetPassword = () => {
           
             const handleEmail = async (e)=>{
                 try {
-                    setLoading(true)
                     e.preventDefault()
+                    setLoading(true)
                      axios.defaults.withCredentials=true
                      const {data}= await axios.post( "/api/auth/sendResetOtp", {email})
                      if(data.success){
@@ -64,8 +64,9 @@ const ResetPassword = () => {
 
             const handleSubmit= async (e)=>{
                 try{
-                     setLoading(true)
+                    
                      e.preventDefault()
+                      setLoading(true)
                      if(newPassword !== repeatNewPassword) toast.error("password not matched")
                      axios.defaults.withCredentials=true
                     const {data} = await axios.post("/api/auth/resetPassword", {otp,email,newPassword})
@@ -86,7 +87,7 @@ const ResetPassword = () => {
             }
             const handleResetOtp= async (e)=>{
                 try{
-                      e.preventDefault()
+                          e.preventDefault()
                            const finalOtp = inputRef.current.filter(Boolean).map(e => e.value).join("");
                          setOtp(finalOtp); 
                          setIsOtpInputSent(true)

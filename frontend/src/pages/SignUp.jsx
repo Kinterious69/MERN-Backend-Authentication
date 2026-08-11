@@ -18,7 +18,6 @@ const SignUp = () => {
     const[repeatPassword,setRepeatPassword]=useState("")
     const [loading, setLoading] = useState(false)
      const navigate =useNavigate()
-
      const {setIsLoggedIn} = useContext(AuthContent)
     
 
