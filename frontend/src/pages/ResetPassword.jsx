@@ -7,7 +7,6 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
 import {useNavigate} from "react-router-dom"
 const ResetPassword = () => {
-        const {BACKEND_URL} = useContext(AuthContent)
        const [isEmailSent, setIsEmailSent]=useState(false)
        const [isOtpInputSent,setIsOtpInputSent]=useState(false)
        const [email,setEmail]=useState("")
@@ -43,7 +42,7 @@ const ResetPassword = () => {
                     setLoading(true)
                     e.preventDefault()
                      axios.defaults.withCredentials=true
-                     const {data}= await axios.post(BACKEND_URL + "/api/auth/sendResetOtp", {email})
+                     const {data}= await axios.post( "/api/auth/sendResetOtp", {email})
                      if(data.success){
                      setIsEmailSent(true)
                      toast(data.message)  
@@ -69,7 +68,7 @@ const ResetPassword = () => {
                      e.preventDefault()
                      if(newPassword !== repeatNewPassword) toast.error("password not matched")
                      axios.defaults.withCredentials=true
-                    const {data} = await axios.post(BACKEND_URL + "/api/auth/resetPassword", {otp,email,newPassword})
+                    const {data} = await axios.post("/api/auth/resetPassword", {otp,email,newPassword})
                      if(data.success){
                         navigate("/")
                        toast(data.message)    
@@ -88,7 +87,6 @@ const ResetPassword = () => {
             const handleResetOtp= async (e)=>{
                 try{
                       e.preventDefault()
-                       // Capture the value while the inputs are still visible on the screen
                            const finalOtp = inputRef.current.filter(Boolean).map(e => e.value).join("");
                          setOtp(finalOtp); 
                          setIsOtpInputSent(true)
@@ -119,13 +117,8 @@ const ResetPassword = () => {
                    <input type="email" className='bg-transparent text-white w-full outline-none ' placeholder='Enter email' required value={email} onChange={e=>setEmail(e.target.value)}/>
                 </div>
               
-                    <button className='bg-gradient-to-r from-indigo-500 to-indigo-900 w-full py-2 rounded-full mb-4'>continue</button>
+                    <button className='bg-gradient-to-r from-indigo-500 to-indigo-900 w-full py-2 rounded-full '>continue</button>
                
-                 
-
-            
-    
-
             </form>
          </div>
       }
@@ -182,7 +175,7 @@ const ResetPassword = () => {
                    <input type="password" className='bg-transparent text-white w-full outline-none ' placeholder='repeat  password' required value={repeatNewPassword} onChange={e=>setRepeatNewPassword(e.target.value)}/>
                 </div>
               
-                    <button className='bg-gradient-to-r from-indigo-500 to-indigo-900 w-full py-2 rounded-full mb-4'>continue</button>
+                    <button className='bg-gradient-to-r from-indigo-500 to-indigo-900 w-full py-2 rounded-full '>continue</button>
                
             </form>
          </div>

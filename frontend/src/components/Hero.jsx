@@ -34,7 +34,7 @@ const Hero = () => {
           <div className=' p-2  bg-slate-900  rounded-md  mw-60 mb-5   '>
         <h1 className='text-center text-lg   text-white'><strong>Profile</strong></h1>
         
-        <div className='p-2 flex flex-col gap-2  mb-2  text-white  ' >
+        <div className='p-2 flex flex-col gap-2    text-white  ' >
           
           
                 <h1 className='font-bold' ><strong>Name:</strong>&nbsp;&nbsp;{userData && userData.name}</h1>

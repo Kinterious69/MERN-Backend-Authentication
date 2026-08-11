@@ -7,12 +7,12 @@ const AuthContext = (props) => {
 
    const [isLoggedIn , setIsLoggedIn]=useState(false)
    const [userData, setUserData]=useState(null)
-    const  BACKEND_URL= import.meta.env.VITE_BACKEND_URL
+
     axios.defaults.withCredentials=true
      
      const getIsAuthenticated = async () => {
     try {
-        await axios.get(BACKEND_URL + "/api/auth/isAuth")
+        await axios.get("/api/auth/isAuth")
         setIsLoggedIn(true)
         getUserData();
     } catch (error) {
@@ -22,7 +22,7 @@ const AuthContext = (props) => {
 
         const getUserData= async () =>{
           try {
-            const {data} = await axios.get(BACKEND_URL + "/api/user/userData")
+            const {data} = await axios.get( "/api/user/userData")
             if(data.success) {
               setUserData(data.userData) 
             }
@@ -37,7 +37,7 @@ const AuthContext = (props) => {
         }
         
     const value={
-      BACKEND_URL,
+    
       isLoggedIn,
       setIsLoggedIn,
       userData,

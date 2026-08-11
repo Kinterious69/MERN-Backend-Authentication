@@ -19,7 +19,7 @@ const SignUp = () => {
     const [loading, setLoading] = useState(false)
      const navigate =useNavigate()
 
-     const {BACKEND_URL,setIsLoggedIn} = useContext(AuthContent)
+     const {setIsLoggedIn} = useContext(AuthContent)
     
 
     const handleSubmit= async (e) =>{
@@ -30,7 +30,7 @@ const SignUp = () => {
      if(state==="login"){ 
           setLoading(true)
       try {
-        const {data} =  await axios.post(BACKEND_URL+"/api/auth/login", {
+        const {data} =  await axios.post("/api/auth/login", {
           email,
           password
          })
@@ -44,7 +44,7 @@ const SignUp = () => {
         }
       } catch (error) {
        toast.error(error.response?.data?.message || error.message);
-        console.log(error.response?.data); // temporary, so you can see full detail in console
+
       }
       finally{
           setLoading(false)
@@ -57,7 +57,7 @@ const SignUp = () => {
        
           try {
             if(password !== repeatPassword) return toast.error("password not matched")
-           const {data} = await axios.post(BACKEND_URL+"/api/auth/signUp", {name,email,password})
+           const {data} = await axios.post("/api/auth/signUp", {name,email,password})
            if(data.success){
             setIsLoggedIn(true);
             toast(data.message);
@@ -69,7 +69,7 @@ const SignUp = () => {
           
         } catch (error) {
           toast.error(error.response?.data?.message || error.message);
-            console.log(error.response?.data); // temporary, so you can see full detail in console
+           
         }
         finally{
           setLoading(false)

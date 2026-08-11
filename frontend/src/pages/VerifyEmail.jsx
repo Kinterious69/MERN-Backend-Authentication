@@ -9,7 +9,6 @@ const VerifyEmail = () => {
   const navigate = useNavigate()
   axios.defaults.withCredentials=true
 
-  const{BACKEND_URL}=useContext(AuthContent)
 
 
     const handleInput =(e, index)=>{
@@ -34,7 +33,7 @@ const VerifyEmail = () => {
        
      
       try {
-        const {data} = await axios.post(BACKEND_URL + "/api/auth/verifyEmail", {otp})
+        const {data} = await axios.post("/api/auth/verifyEmail", {otp})
       
         if(data.success){ 
           toast(data.message)
@@ -80,7 +79,7 @@ const VerifyEmail = () => {
             </div>   
                 
       
-            <button className='bg-gradient-to-r from-indigo-500 to-indigo-900 w-full py-2 rounded-full mb-4'>continue</button>
+            <button className='bg-gradient-to-r from-indigo-500 to-indigo-900 w-full py-2 rounded-full '>continue</button>
         </form>
          </div>
          </div>

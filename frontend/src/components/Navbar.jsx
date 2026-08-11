@@ -13,7 +13,7 @@ const Navbar = () => {
   
    const navigate =useNavigate()
   
-    const {BACKEND_URL,setIsLoggedIn,setUserData,userData, getUserData} = useContext(AuthContent)
+    const {setIsLoggedIn,setUserData,userData, getUserData} = useContext(AuthContent)
  
    
    
@@ -25,7 +25,7 @@ const Navbar = () => {
   
    const handleClick= async () =>{
       try {
-            const {data} = await axios.post(BACKEND_URL+"/api/auth/logout")
+            const {data} = await axios.post("/api/auth/logout")
             if(data.success){
                
                toast(data.message);
