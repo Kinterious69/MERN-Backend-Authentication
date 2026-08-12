@@ -24,14 +24,14 @@ const Hero = () => {
         <img className='   rounded-full p-1 bg-slate-900  '  src={images} alt="" />
          </div>
          <div> 
-        <p className='text-center text-lg  text-white   font-bold '>welcome back, {userData && userData.name.split(" ")[0]} <br></br> </p>
+         {userData && <p className='text-center text-lg  text-white   font-bold '>welcome back, { userData.name.split(" ")[0]} <br></br> </p>}
         </div>
         </div>
 
 
        
        
-          <div className=' p-2  bg-slate-900  rounded-md  mw-60 mb-5   '>
+          <div className=' p-2  bg-slate-900  rounded-md  min-w-60 mb-5   '>
         <h1 className='text-center text-lg   text-white'><strong>Profile</strong></h1>
         
         <div className='p-2 flex flex-col gap-2    text-white  ' >
@@ -39,7 +39,7 @@ const Hero = () => {
           
                 <h1 className='font-bold' ><strong>Name:</strong>&nbsp;&nbsp;{userData && userData.name}</h1>
                 <h1 className='font-bold'><strong>Email:</strong>&nbsp;&nbsp;&nbsp;{userData && userData.email}</h1>
-                <h1 className='font-bold'><strong>Status:</strong>&nbsp;&nbsp;{userData && userData.verified ? "verified" : "unverified"}</h1>
+                <h1 className='font-bold'><strong>Status:</strong>&nbsp;&nbsp;{userData && userData.verified ? "verified" : !userData? "": "unverified"}</h1>
                        
             
         </div>
