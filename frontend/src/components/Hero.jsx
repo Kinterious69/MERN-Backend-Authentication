@@ -59,7 +59,7 @@ const Hero = () => {
                   Status:
                  </div>
                  <div className='text-white px-2 '>
-                   {userData && userData.verified ?<div className='w-18 text-green-600 font-bold bg-white rounded-md px-3'>Verified</div> :(  !userData.verified?<div className='w-18 text-red-600 font-bold bg-white rounded-md px-3'>unVerified</div> : "")}  
+                   {userData && userData.verified ?<div className='w-18 text-green-600 font-bold bg-white rounded-md px-3'>Verified</div> : <div className='w-18 text-red-600 font-bold bg-white rounded-md px-3'>unVerified</div> }  
                  </div>
             </div>
           
