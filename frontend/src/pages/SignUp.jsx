@@ -99,7 +99,7 @@ const SignUp = () => {
             <input className='px-4 w-full bg-transparent text-base  rounded-md outline-none  ' value={password} onChange={(e)=>setPassword(e.target.value)} type="password" id='password' placeholder='Enter password' />
         </div>
         <div className='mb-2 '>
-        <button  className='px-6 py-2 bg-gradient-to-r from-indigo-500 to-indigo-900 text-white rounded-full w-full'>{state}</button>
+        <button type='submit' disabled={loading}  className='px-6 py-2 bg-gradient-to-r from-indigo-500 to-indigo-900 text-white rounded-full w-full'>{state}</button>
      </div>
      </form>
 
@@ -137,7 +137,7 @@ const SignUp = () => {
             <input  className='px-4 w-full bg-transparent text-base  rounded-md outline-none '  type="password" id='password' placeholder='Repeat password' value={repeatPassword}  onChange={e=>setRepeatPassword(e.target.value)} />
         </div >
         <div className='mb-2'>
-        <button className='px-6 py-2 bg-gradient-to-r from-indigo-500 to-indigo-900 text-white rounded-full w-full'>{state}</button>
+        <button type='submit' disabled={loading} className='px-6 py-2 bg-gradient-to-r from-indigo-500 to-indigo-900 text-white rounded-full w-full'>{state}</button>
      </div>
      </form>
      

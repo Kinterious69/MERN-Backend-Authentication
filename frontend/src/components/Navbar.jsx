@@ -67,7 +67,7 @@ const Navbar = () => {
    }
    
   return (
-    <div className='flex justify-between items-center shadow-lg p-1 top-0 absolute w-full text-white  '>
+    <div className='flex justify-between items-center shadow-lg p-2 top-0 absolute w-full text-white  '>
         
        <h1 className=' text-white text-xs font-bold '>MERN-AUTHENTICATION</h1>
        {
@@ -75,7 +75,7 @@ const Navbar = () => {
        <div className='group '>
                   {
                      userData ?(
-                      <><button  className=' py-0.5 px-2.5  text-md relative shadow-lg font-bold bg-slate-900 rounded-full ' >{userData && userData.name[0].toUpperCase()}</button>
+                      <><button  className=' py-1.5 px-3.5  text-md relative shadow-lg font-bold bg-slate-900 rounded-full ' >{userData && userData.name[0].toUpperCase()}</button>
                       <ul className='group-hover:block   hidden bg-transparent cursor-pointer absolute right-0 mr-3 p-1 text-sm'>
                        <li onClick={handleVerifyOtp} className='hover:bg-white text-xs hover:text-black mb-1'>verifyEmail</li> 
                         <li onClick={handleClick} className='hover:bg-white text-xs hover:text-black'>Logout</li>
@@ -83,7 +83,7 @@ const Navbar = () => {
                         </>
                      ):
                      (
-                        <button onClick={()=>navigate("/")} className=' text-center  text-md relative shadow-lg font-bold bg-slate-900 px-2.5 py-0.5 rounded-full tracking-wider' >login</button>
+                        <button onClick={()=>navigate("/")} className=' text-center  text-xs relative shadow-lg font-bold bg-slate-900 px-3.5 py-1.5 rounded-full tracking-wider' >login</button>
                      )
                   }    
 

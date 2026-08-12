@@ -3,10 +3,12 @@ import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { AuthContent } from '../context/AuthContext'
+import { useState } from 'react'
 
 const VerifyEmail = () => {
   const inputRef = React.useRef([])
   const navigate = useNavigate()
+  const [loading,setLoading]=useState(false)
   axios.defaults.withCredentials=true
 
 
@@ -27,12 +29,14 @@ const VerifyEmail = () => {
     }
 
     const handleSubmit= async (e) => {
-      e.preventDefault();
+        e.preventDefault();
+       
       const otpArray = inputRef.current.map(e=>e.value)
        const otp= otpArray.join("")
        
      
       try {
+         setLoading(true)
         const {data} = await axios.post("/api/auth/verifyEmail", {otp})
       
         if(data.success){ 
@@ -47,6 +51,8 @@ const VerifyEmail = () => {
         const errorMessage = error.response?.data?.message || error.message || "Network error occurred .";
     
            toast.error(errorMessage);
+      }finally{
+        setLoading(false)
       }
       
       
@@ -79,7 +85,7 @@ const VerifyEmail = () => {
             </div>   
                 
       
-            <button className='bg-gradient-to-r from-indigo-500 to-indigo-900 w-full py-2 rounded-full '>continue</button>
+            <button type='submit' disabled={loading} className='bg-gradient-to-r from-indigo-500 to-indigo-900 w-full py-2 rounded-full '>continue</button>
         </form>
          </div>
          </div>

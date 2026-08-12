@@ -118,7 +118,7 @@ const ResetPassword = () => {
                    <input type="email" className='bg-transparent text-white w-full outline-none ' placeholder='Enter email' required value={email} onChange={e=>setEmail(e.target.value)}/>
                 </div>
               
-                    <button className='bg-gradient-to-r from-indigo-500 to-indigo-900 w-full py-2 rounded-full '>continue</button>
+                    <button type='submit' disabled={loading} className='bg-gradient-to-r from-indigo-500 to-indigo-900 w-full py-2 rounded-full '>continue</button>
                
             </form>
          </div>
@@ -149,7 +149,7 @@ const ResetPassword = () => {
             </div>   
                 
            <div className='flex justify-center items-center p-3'>
-            <button className=' py-2 px-5 text-white font-bold bg-gradient-to-r from-indigo-500  to-indigo-900 rounded-full w-full '>continue</button>
+            <button type='submit' disabled={loading} className=' py-2 px-5 text-white font-bold bg-gradient-to-r from-indigo-500  to-indigo-900 rounded-full w-full '>continue</button>
             
            </div>
              
@@ -176,7 +176,7 @@ const ResetPassword = () => {
                    <input type="password" className='bg-transparent text-white w-full outline-none ' placeholder='repeat  password' required value={repeatNewPassword} onChange={e=>setRepeatNewPassword(e.target.value)}/>
                 </div>
               
-                    <button className='bg-gradient-to-r from-indigo-500 to-indigo-900 w-full py-2 rounded-full '>continue</button>
+                    <button type='submit' disabled={loading} className='bg-gradient-to-r from-indigo-500 to-indigo-900 w-full py-2 rounded-full '>continue</button>
                
             </form>
          </div>
