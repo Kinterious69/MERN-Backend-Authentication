@@ -16,7 +16,7 @@ const Hero = () => {
   return (
     
     
-      <div className=' min-h-screen p-2  flex gap-4 flex-col px-6 items-center overflow-hidden'>
+      <div className=' min-h-screen p-2  flex gap-4 flex-col  items-center  '>
       
         <div>
          
@@ -31,20 +31,49 @@ const Hero = () => {
 
        
        
-          <div className=' p-2  bg-slate-900  rounded-md  min-w-60 mb-5   '>
+          <div className=' p-1  bg-slate-900  rounded-md flex flex-col gap-2   mb-5    '>
         <h1 className='text-center text-lg   text-white'><strong>Profile</strong></h1>
-        
-        <div className='p-2 flex flex-col gap-2    text-white  ' >
+       
+            <div className='flex gap-2'>
+                 <div className='text-white px-2 '>
+                  Name:
+                 </div>
+                 <div className='text-white px-2 '>
+                   {userData ? userData.name : ""}
+                 </div>
+            </div>
           
           
-                <h1 className='font-bold' ><strong>Name:</strong>&nbsp;&nbsp;{userData && userData.name}</h1>
-                <h1 className='font-bold'><strong>Email:</strong>&nbsp;&nbsp;&nbsp;{userData && userData.email}</h1>
-                <h1 className='font-bold'><strong>Status:</strong>&nbsp;&nbsp;{userData && userData.verified ? "verified" : !userData? "": "unverified"}</h1>
-                       
+            <div className='flex gap-3 '>
+                 <div className='text-white px-2 '>
+                  Email:
+                 </div>
+                 <div className='text-white px-2 '>
+                   {userData ? userData.email : ""}
+                 </div>
+            </div>
+          
+          
+            <div className='flex gap-2 mb-2 ' >
+                 <div className='text-white px-2 '>
+                  Status:
+                 </div>
+                 <div className='text-white px-2 '>
+                  {userData ?<div className='w-18 text-green-600 font-bold bg-white rounded-md px-3'>Verified</div> :(userData ? <div className='w-18 text-red-600 font-bold bg-white rounded-md px-3'>unVerified</div> : "")}  
+                 </div>
+            </div>
+          
+          
+
+            
+
+
+
+       
             
         </div>
          
-        </div>
+        
         
     
      

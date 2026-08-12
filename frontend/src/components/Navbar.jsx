@@ -15,7 +15,7 @@ const Navbar = () => {
   
     const {setIsLoggedIn,setUserData,userData, getUserData} = useContext(AuthContent)
     const[logoutloading, setlogoutLoading]=useState(false)
-    const [verifyEmailLoading, setVerifyEmailLoading]=useState("")
+    const [verifyEmailLoading, setVerifyEmailLoading]=useState(false)
  
    
    
@@ -28,7 +28,7 @@ const Navbar = () => {
    const handleClick= async (e) =>{
       try {  
               e.preventDefault()
-             setLoading(true)
+             setlogoutLoading(true)
             const {data} = await axios.post("/api/auth/logout")
             if(data.success){
               
@@ -44,13 +44,13 @@ const Navbar = () => {
       } catch (error) {
          toast.error(error.message)
       }finally{
-         setLoading(false)
+         setlogoutLoading(false)
       }
    }
    const handleVerifyOtp = async (e)=>{
       try {
          e.preventDefault()
-         setLoading(true)
+         setVerifyEmailLoading(true)
          const {data}= await axios.post( "/api/auth/sendVerifyOtp");
          if(data.success){
             toast(data.message)
@@ -63,7 +63,7 @@ const Navbar = () => {
          
       }
       finally{
-         setLoading(false)
+         setVerifyEmailLoading(false)
       }
    }
    
@@ -78,9 +78,15 @@ const Navbar = () => {
                      userData ?(
                       <><button  className=' py-1.5 px-3.5  text-md relative shadow-lg font-bold bg-slate-900 rounded-full ' >{userData && userData.name[0].toUpperCase()}</button>
                       <ul className='group-hover:block   hidden bg-transparent cursor-pointer absolute right-0 mr-3 p-1 text-sm'>
-                       <li onClick={handleVerifyOtp} className='hover:bg-white text-xs hover:text-black mb-1'>verifyEmail</li> 
-                        <li onClick={handleClick} className='hover:bg-white text-xs hover:text-black'>Logout</li>
-                      </ul>
+                      { 
+                       
+                       !verifyEmailLoading ?  <li onClick={handleVerifyOtp} className='hover:bg-white text-xs hover:text-black mb-1'>verifyEmail</li> : <li>Loading...</li>
+
+                      }
+                      {
+                      !logoutloading  ? <li onClick={handleClick} className='hover:bg-white text-xs hover:text-black'>Logout</li> : <li>Loading...</li>
+                      }
+                       </ul>
                         </>
                      ):
                      (
