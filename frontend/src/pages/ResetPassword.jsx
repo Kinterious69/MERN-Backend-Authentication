@@ -87,11 +87,11 @@ const ResetPassword = () => {
             }
             const handleResetOtp= async (e)=>{
                  e.preventDefault()
-                 const finalOtp = inputRef.current.filter(Boolean).map(e => e.value).join("");
+                 const otp = inputRef.current.filter(Boolean).map(e => e.value).join("");
                 try{
-                    const {data} = await axios.post("/api/auth/verifyOtp", {email,finalOtp})
+                    const {data} = await axios.post("/api/auth/verifyOtp", {email,otp})
                     if(data.success){
-                         setOtp(finalOtp); 
+                         setOtp(otp); 
                          setIsOtpInputSent(true)
                          toast(data.message)
                     }
