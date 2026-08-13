@@ -111,7 +111,7 @@ const ResetPassword = () => {
   return (
 
 
-    <div  className='flex items-center bg-gradient-to-r from-lime-50 to-blue-400 justify-center min-h-screen  flex-col'>
+    <div  className='flex items-center p-6 bg-gradient-to-r from-lime-50 to-blue-400 justify-center min-h-screen  flex-col'>
         
           <div className='absolute top-3 left-6 '>
          <h1 className='  font-bold text-blue-400 '>MERN-AUTHENTICATION</h1>
@@ -119,17 +119,17 @@ const ResetPassword = () => {
          
           {/* email modal*/}
       {
-        !isEmailSent &&  <div className='bg-slate-900 sm:min-w-96 p-4 text-white flex flex-row justify-center items-center rounded-md'>
-            <form onClick={handleEmail} >
-                <h1 className=' text-center text-2xl font-bold p-3'>Reset Password</h1>
-                <p className='text-md py-2 mb-3 text-center'>Enter your email  </p>
+        !isEmailSent &&  <div  className='px-10 py-3 m-2 w-full bg-slate-900 rounded-lg shadow-lg sm:w-96 text-indigo-300 text-sm'>
+            <form onSubmit={handleEmail} >
+                <h1 className=' text-center text-white text-2xl font-bold p-3'>Reset Password</h1>
+                <p className='text-md text-white py-2 mb-3 text-center'>Enter your email  </p>
 
-                <div className='bg-slate-800  rounded-full  p-2 px-5 flex justify-between items-center mb-6 '>
-                    <div className='px-1'>{<Mail/>}</div>
-                   <input type="email" className='bg-transparent   text-white  outline-none   ' placeholder='Enter email' required value={email} onChange={e=>setEmail(e.target.value)}/>
+                <div className='bg-slate-800  rounded-full  p-2 flex justify-between items-center mb-6  '>
+                    <div >{<Mail/>}</div>
+                   <input type="email" className='bg-transparent px-4 w-full text-base  text-white  outline-none   ' placeholder='Enter email' required value={email} onChange={e=>setEmail(e.target.value)}/>
                 </div>
               
-                    <button type='submit' disabled={loading} className='bg-gradient-to-r from-indigo-500 to-indigo-900 w-full py-2 rounded-full mb-2 '>continue</button>
+                    <button type='submit' disabled={loading} className='bg-gradient-to-r from-indigo-500 to-indigo-900 text-white w-full py-2 rounded-full mb-4 '>continue</button>
                
             </form>
          </div>
@@ -138,7 +138,7 @@ const ResetPassword = () => {
 
         {/*reset password modal*/}
       {
-        (isEmailSent && !isOtpInputSent) &&  <div className='bg-slate-900 sm:min-w-96  p-2 rounded-md  flex justify-center items-center '>
+        (isEmailSent && !isOtpInputSent) &&  <div className='bg-slate-900 sm:min-w-96  px-8 rounded-md  flex justify-center items-center '>
         <form onSubmit={handleResetOtp} >
             
 
@@ -160,7 +160,7 @@ const ResetPassword = () => {
             </div>   
                 
            <div className='flex justify-center items-center p-3'>
-            <button type='submit' disabled={loading} className=' py-2 px-5 text-white font-bold bg-gradient-to-r from-indigo-500  to-indigo-900 rounded-full w-full mb-2 '>continue</button>
+            <button type='submit' disabled={loading} className=' py-2 px-5 text-white font-bold bg-gradient-to-r from-indigo-500  to-indigo-900 rounded-full w-full mb-3 '>continue</button>
             
            </div>
              
@@ -172,34 +172,25 @@ const ResetPassword = () => {
         
        
            {/*new password modal*/}
-            { (isEmailSent && isOtpInputSent) && <div className='bg-slate-900 sm:min-w-96 p-4 text-white flex flex-row justify-center items-center rounded-md'>
+        {(isEmailSent &&  isOtpInputSent) &&   <div className='bg-slate-900 sm:min-w-96 px-10 py-3 w-full text-white flex flex-row justify-center items-center rounded-md'>
             <form onSubmit={handleSubmit} >
                 <h1 className=' text-center text-2xl font-bold p-3'>Enter New Password</h1>
                 <p className='text-md p-2 mb-3 text-center'>Enter a new password </p>
 
                 <div className='bg-slate-800 w-full rounded-full p-2 flex justify-between items-center mb-6 '>
-                    <div className='px-2'>{<Lock/>}</div>
-                   <input type="password" className='bg-transparent text-white w-full outline-none ' placeholder='Enter new password' required value={newPassword} onChange={e=>setNewPassword(e.target.value)}/>
+                    <div >{<Lock/>}</div>
+                   <input type="password" className='bg-transparent pl-2 text-white w-full outline-none ' placeholder='Enter new password' required value={newPassword} onChange={e=>setNewPassword(e.target.value)}/>
                 </div>
               
                 <div className='bg-slate-800 w-full rounded-full p-2 flex justify-between items-center mb-6 '>
-                    <div className='px-2'>{<Lock/>}</div>
-                   <input type="password" className='bg-transparent text-white w-full outline-none ' placeholder='repeat  password' required value={repeatNewPassword} onChange={e=>setRepeatNewPassword(e.target.value)}/>
+                    <div >{<Lock/>}</div>
+                   <input type="password" className='bg-transparent pl-2 text-white w-full outline-none ' placeholder='repeat  password' required value={repeatNewPassword} onChange={e=>setRepeatNewPassword(e.target.value)}/>
                 </div>
               
-                    <button type='submit' disabled={loading} className='bg-gradient-to-r from-indigo-500 to-indigo-900 w-full py-2 rounded-full mb-2 '>continue</button>
+                    <button type='submit' disabled={loading} className='bg-gradient-to-r from-indigo-500 to-indigo-900 w-full py-2 rounded-full mb-3 text-white '>continue</button>
                
             </form>
-         </div>
-            }
-
-
-
-
-
-
-
-
+         </div>}
 
 
 

@@ -62,13 +62,13 @@ const VerifyEmail = () => {
 
   return (
 
-    <div  className='flex  justify-center items-center bg-gradient-to-r from-lime-50 to-blue-400  min-h-screen '>
+    <div  className='flex p-2  justify-center items-center bg-gradient-to-r from-lime-50 to-blue-400  min-h-screen '>
         <div className='absolute top-3 left-6 '>
          <h1 className='  font-bold text-blue-400 '>MERN-AUTHENTICATION</h1>
       </div>
 
 
-       <div className='bg-slate-900 sm:min-w-96  p-4 rounded-md  flex-row  flex justify-center items-center '>
+       <div className='bg-slate-900 sm:min-w-96 py-3 px-4 rounded-md  flex-row  flex justify-center items-center '>
         <form  onSubmit={handleSubmit}>
             
 
@@ -80,7 +80,7 @@ const VerifyEmail = () => {
                 {
 
                 Array(6).fill(0).map((_, index)=>(
-                    <input type="text"  className='w-10 h-10 bg-slate-600 rounded-md text-white text-center ' maxLength={1}  ref={e=>inputRef.current[index]=e} onInput={e=>handleInput(e,index) } onKeyDown={e=>handleBackspace(e,index)} key={index} />
+                    <input type="text"  className='w-10 h-10 bg-slate-600 rounded-md text-white text-center  ' maxLength={1}  ref={e=>inputRef.current[index]=e} onInput={e=>handleInput(e,index) } onKeyDown={e=>handleBackspace(e,index)} key={index} />
                 ))
 
                 
@@ -88,7 +88,7 @@ const VerifyEmail = () => {
             </div>   
                 
       
-            <button type='submit' disabled={loading} className='bg-gradient-to-r from-indigo-500 to-indigo-900 w-full py-2 rounded-full '>continue</button>
+            <button type='submit' disabled={loading} className='bg-gradient-to-r from-indigo-500 to-indigo-900 w-full text-white py-2 rounded-full mb-3'>continue</button>
         </form>
          </div>
          </div>
