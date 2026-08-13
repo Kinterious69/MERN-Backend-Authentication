@@ -198,3 +198,25 @@ export const resetPassword = async (req,res)=>{
 
 
 }
+export const veryfyOtp = async (req,res)=>{
+    const {email,otp}= req.body;
+    try {
+          const user = await userModel.findOne({email});
+          if(user.resetOtp!==otp || user.resetOtpExpiresAt<Date.now()) return res.status(404).json({success:false, message:"wrong or expired otp"})
+           res.status(200).json({
+           success:true,
+           message:"otp matched"
+           })
+  
+        
+    } catch (error) {
+        res.status(500).json({
+           success:false,
+           error:error.message
+        })
+    }
+
+    
+  
+
+}

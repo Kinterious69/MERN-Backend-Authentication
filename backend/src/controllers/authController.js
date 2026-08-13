@@ -1,7 +1,5 @@
 import { welcomeEmailMessage } from "../config/brevoEmail.js";
-import { welcomeSignUpTemplate } from "../config/emailTemplate.js";
 import { tokenGenerator } from "../config/generateToken.js";
-import { transporter } from "../config/nodemailer.js";
 import { userModel } from "../model/userModel.js";
 import bcrypt from "bcrypt"
 
@@ -91,25 +89,3 @@ export const logout =(__,res)=>{
     }
 }
 
-const forgotPassword = async (req,res)=>{
-    const {email}= req.body;
-    try {
-          const user = await userModel.findByIdAndUpdate({email}, red.body, {new:true});
-          if(!user) return res.status(404).json({success:false, message:"no user found with this email address"})
-           res.status(200).json({
-           success:true,
-           message:"password successfully reset"
-           })
-  
-        
-    } catch (error) {
-        res.status(500).json({
-           success:false,
-           error:error.message
-        })
-    }
-
-    
-  
-
-}

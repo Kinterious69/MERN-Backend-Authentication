@@ -63,6 +63,9 @@ const VerifyEmail = () => {
   return (
 
     <div  className='flex  justify-center items-center bg-gradient-to-r from-lime-50 to-blue-400  min-h-screen '>
+        <div className='absolute top-3 left-6 '>
+         <h1 className='  font-bold text-blue-400 '>MERN-AUTHENTICATION</h1>
+      </div>
 
 
        <div className='bg-slate-900 sm:min-w-96  p-4 rounded-md  flex-row  flex justify-center items-center '>
