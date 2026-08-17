@@ -90,7 +90,7 @@ const Navbar = () => {
                         </>
                      ):
                      (
-                        <button onClick={()=>navigate("/")} className=' text-center  text-xs relative shadow-lg font-bold bg-slate-900 px-3.5 py-1.5 rounded-full tracking-wider' >login</button>
+                        <button onClick={()=>navigate("/")} className=' text-center  text-xs relative shadow-lg font-bold bg-transparent px-3.5 py-1.5 rounded-full tracking-wider' >login</button>
                      )
                   }    
 

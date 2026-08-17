@@ -21,7 +21,7 @@ const Hero = () => {
         <div>
          
          <div className='  mt-12 p-12 w-72 '  >
-        <img className='   rounded-full p-1 bg-slate-900  '  src={images} alt="" />
+        <img className='   rounded-full p-1 bg-white  '  src={images} alt="" />
          </div>
          <div> 
          {userData && <p className='text-center text-lg  text-white   font-bold '>welcome back, { userData.name.split(" ")[0]} <br></br> </p>}
@@ -31,21 +31,21 @@ const Hero = () => {
 
        
        
-          <div className=' p-1  bg-slate-900  rounded-md flex flex-col gap-2   mb-5    '>
-        <h1 className='text-center text-lg   text-white'><strong>Profile</strong></h1>
+          <div className=' p-1  bg-transparent  rounded-md flex flex-col gap-2 shadow-lg  mb-5    '>
+        <h1 className='text-center text-lg    text-white'><strong>Profile</strong></h1>
        
             <div className='flex gap-2'>
-                 <div className='text-white px-2 '>
+                 <div className='text-white px-2 font-bold '>
                   Name:
                  </div>
-                 <div className='text-white px-2 '>
+                 <div className='text-white px-2 font-bold'>
                    {userData ? userData.name : ""}
                  </div>
             </div>
           
           
             <div className='flex gap-3 '>
-                 <div className='text-white px-2 '>
+                 <div className='text-white px-2 font-bold '>
                   Email:
                  </div>
                  <div className='text-white px-2 '>
@@ -55,7 +55,7 @@ const Hero = () => {
           
           
             <div className='flex gap-2 mb-2 ' >
-                 <div className='text-white px-2 '>
+                 <div className='text-white px-2 font-bold '>
                   Status:
                  </div>
                  <div className='text-white px-2 '>

@@ -1,62 +1,92 @@
-import axios from 'axios'
-import React, {  createContext, useEffect, useState } from 'react'
-import { toast } from 'react-toastify'
-export const AuthContent=createContext()
+import axios from "axios";
+import React, {
+  createContext,
+  useEffect,
+  useState
+} from "react";
+
+export const AuthContent = createContext();
 
 const AuthContext = (props) => {
 
-   const [isLoggedIn , setIsLoggedIn]=useState(false)
-   const [userData, setUserData]=useState(null)
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userData, setUserData] = useState(null);
 
-    axios.defaults.withCredentials=true
-     
-     const getIsAuthenticated = async () => {
+  // Important: authentication has not been checked yet
+  const [authLoading, setAuthLoading] = useState(true);
+
+  axios.defaults.withCredentials = true;
+
+  const getUserData = async () => {
     try {
-        await axios.get("/api/auth/isAuth")
-        setIsLoggedIn(true)
-        getUserData();
+
+      const { data } = await axios.get("/api/user/userData");
+
+      if (data.success) {
+        setUserData(data.userData);
+      }
+
     } catch (error) {
-        console.log("isAuth failed:", error.response?.status, error.response?.data)
+      console.log(
+        "getUser failed:",
+        error.response?.status,
+        error.response?.data
+      );
     }
-}
+  };
 
-        const getUserData= async () =>{
-          try {
-            const {data} = await axios.get( "/api/user/userData")
-            if(data.success) {
-              setUserData(data.userData) 
-            }
-            else{
-             console.log("getUser failed:", error.response?.status, error.response?.data)
-            }
+  const getIsAuthenticated = async () => {
+    try {
 
-            
-          } catch (error) {
-          
-          }
-        }
-        
-    const value={
-    
-      isLoggedIn,
-      setIsLoggedIn,
-      userData,
-      setUserData,
-      getUserData,
-      
+      const { data } = await axios.get("/api/auth/isAuth");
+
+      if (data.success) {
+        setIsLoggedIn(true);
+        await getUserData();
+      } else {
+        setIsLoggedIn(false);
+      }
+
+    } catch (error) {
+
+      console.log(
+        "isAuth failed:",
+        error.response?.status,
+        error.response?.data
+      );
+
+      setIsLoggedIn(false);
+      setUserData(null);
+
+    } finally {
+
+      // Authentication check is finished
+      setAuthLoading(false);
+
     }
-    
-    useEffect(()=>{
-      getIsAuthenticated()
-    },[])
-    
+  };
+
+  useEffect(() => {
+    getIsAuthenticated();
+  }, []);
+
+  const value = {
+    isLoggedIn,
+    setIsLoggedIn,
+
+    userData,
+    setUserData,
+
+    getUserData,
+
+    authLoading
+  };
+
   return (
     <AuthContent.Provider value={value}>
       {props.children}
     </AuthContent.Provider>
+  );
+};
 
-   
-  )
-}
-
-export default AuthContext
+export default AuthContext;
