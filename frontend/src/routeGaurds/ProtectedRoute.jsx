@@ -16,7 +16,7 @@ const ProtectedRoute = ({ children }) => {
 
   // Authentication check finished and user isn't logged in
   if (!isLoggedIn) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/" replace />;
   }
 
   // User is authenticated
