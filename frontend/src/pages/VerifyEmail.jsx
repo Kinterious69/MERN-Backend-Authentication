@@ -1,8 +1,7 @@
 import axios from 'axios'
-import React, { useContext } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { AuthContent } from '../context/AuthContext'
 import { useState } from 'react'
 
 const VerifyEmail = () => {

@@ -1,8 +1,6 @@
 import React from 'react'
 import {Mail,Lock} from "lucide-react"
 import { useState } from 'react'
-import { useContext } from 'react'
-import { AuthContent } from '../context/AuthContext'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import {useNavigate} from "react-router-dom"

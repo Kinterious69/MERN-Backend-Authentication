@@ -12,7 +12,6 @@ const AuthContext = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userData, setUserData] = useState(null);
 
-  // Important: authentication has not been checked yet
   const [authLoading, setAuthLoading] = useState(true);
 
   axios.defaults.withCredentials = true;
@@ -60,7 +59,7 @@ const AuthContext = (props) => {
 
     } finally {
 
-      // Authentication check is finished
+      
       setAuthLoading(false);
 
     }
